@@ -42,31 +42,42 @@ export class SidenavComponent implements OnInit {
   arrow!: SafeResourceUrl;
   @Input() showFiller: 'open' | 'closed' = 'closed';
   @Input() isOpen: boolean = false;
+  active: boolean = true;
 
   menuItems = [
-    { id: 1, label: 'Overview', imgUrl: 'assets/home.svg', link: 'overview' },
+    {
+      id: 1,
+      label: 'Overview',
+      imgUrl: 'assets/home.svg',
+      activeImgUrl: 'assets/home-active.svg',
+      link: 'overview',
+    },
     {
       id: 2,
       label: 'Transactions',
       imgUrl: 'assets/transactions.svg',
+      activeImgUrl: 'assets/transactions-active.svg',
       link: 'transactions',
     },
     {
       id: 3,
       label: 'Budgets',
       imgUrl: 'assets/chart-logo.svg',
+      activeImgUrl: 'assets/chart-logo-active.svg',
       link: 'budgets',
     },
     {
       id: 4,
       label: 'Pots',
       imgUrl: 'assets/pots.svg',
+      activeImgUrl: 'assets/pots-active.svg',
       link: 'pots',
     },
     {
       id: 5,
       label: 'Recurring bills',
       imgUrl: 'assets/bills.svg',
+      activeImgUrl: 'assets/bills-active.svg',
       link: 'recurring-bills',
     },
   ];
@@ -97,13 +108,6 @@ export class SidenavComponent implements OnInit {
 
   trackById(item: any): any {
     return item.id;
-  }
-
-  onMouseOver(): void {
-    let icon = document.querySelector('.nav-icon');
-    if (icon) {
-      (icon as HTMLElement).style.fill = 'yellow';
-    }
   }
 
   onLinkClick(item: any): void {

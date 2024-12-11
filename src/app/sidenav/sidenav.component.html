@@ -26,12 +26,21 @@
             [class.active]="selectedMenuItem === item"
             class="navbar-items"
           >
+            @if(active) {
+            <img
+              class="nav-icon"
+              [src]="
+                selectedMenuItem === item ? item.activeImgUrl : item.imgUrl
+              "
+              alt="{{ item.label }} Icon"
+            />
+            } @else {
             <img
               class="nav-icon"
               [src]="item.imgUrl"
-              (mouseover)="onMouseOver()"
               alt="{{ item.label }} Icon"
             />
+            }
             <a routerLinkActive="active" class="subtitle">
               {{ item.label }}
             </a>
