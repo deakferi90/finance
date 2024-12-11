@@ -28,7 +28,6 @@
             (mouseleave)="onHoverItem(null)"
             class="navbar-items"
           >
-            @if(active) {
             <img
               class="nav-icon"
               [src]="
@@ -38,13 +37,6 @@
               "
               alt="{{ item.label }} Icon"
             />
-            } @else {
-            <img
-              class="nav-icon"
-              [src]="item.imgUrl"
-              alt="{{ item.label }} Icon"
-            />
-            }
             <a routerLinkActive="active" class="subtitle">
               {{ item.label }}
             </a>
