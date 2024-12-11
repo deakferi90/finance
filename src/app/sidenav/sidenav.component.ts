@@ -39,6 +39,7 @@ import {
 export class SidenavComponent implements OnInit {
   svgLogoUrl!: SafeResourceUrl;
   selectedMenuItem: any = null;
+  hoveredItem: any = null;
   arrow!: SafeResourceUrl;
   @Input() showFiller: 'open' | 'closed' = 'closed';
   @Input() isOpen: boolean = false;
@@ -94,6 +95,10 @@ export class SidenavComponent implements OnInit {
     this.router.events.subscribe(() => {
       this.updateActiveMenu();
     });
+  }
+
+  onHoverItem(item: any): void {
+    this.hoveredItem = item;
   }
 
   toggleSidenav(): void {

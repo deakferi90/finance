@@ -24,13 +24,17 @@
             [routerLink]="item.link"
             routerLinkActive="active"
             [class.active]="selectedMenuItem === item"
+            (mouseover)="onHoverItem(item)"
+            (mouseleave)="onHoverItem(null)"
             class="navbar-items"
           >
             @if(active) {
             <img
               class="nav-icon"
               [src]="
-                selectedMenuItem === item ? item.activeImgUrl : item.imgUrl
+                hoveredItem === item || selectedMenuItem === item
+                  ? item.activeImgUrl
+                  : item.imgUrl
               "
               alt="{{ item.label }} Icon"
             />
