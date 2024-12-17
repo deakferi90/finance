@@ -1,4 +1,7 @@
 @use "@angular/material" as mat;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @include mat.core();
 
@@ -24,4 +27,8 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+.mat-drawer-content {
+  width: 100% !important;
 }

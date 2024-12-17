@@ -8,7 +8,8 @@
     class="example-sidenav mat-drawer-side"
     [@drawerAnimation]="showFiller"
     mode="side"
-    ><div class="example-sidenav-content">
+  >
+    <div class="example-sidenav-content">
       <img
         class="main-logo"
         [src]="svgLogoUrl"
@@ -37,9 +38,7 @@
               "
               alt="{{ item.label }} Icon"
             />
-            <a routerLinkActive="active" class="subtitle">
-              {{ item.label }}
-            </a>
+            <a routerLinkActive="active" class="subtitle">{{ item.label }}</a>
           </li>
         </ul>
       </nav>
@@ -53,10 +52,12 @@
           [src]="arrow"
           [class.reversed]="showFiller !== 'open'"
           alt="Arrow"
-        /><span *ngIf="showFiller === 'open'">Minimize Menu</span>
+        />
+        <span *ngIf="showFiller === 'open'">Minimize Menu</span>
       </button>
     </div>
   </mat-drawer>
+
   <div class="content-container" [class.shifted]="showFiller === 'open'">
     <router-outlet></router-outlet>
   </div>

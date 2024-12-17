@@ -1,0 +1,46 @@
+.table-container {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: auto;
+  margin: 0 auto;
+}
+
+.table-container table {
+  width: 100%;
+  min-width: 600px;
+}
+
+.custom-td {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 0;
+
+  .img {
+    width: 50px;
+    border-radius: 50%;
+  }
+}
+
+.input-el {
+  padding: 10px;
+  line-height: 25px;
+  border-radius: 5px;
+  border: 1px solid #98908b;
+  height: 50px;
+  width: 20%;
+}
+
+.sidenav-open {
+  width: calc(100% - 250px);
+}
+
+.sidenav-closed {
+  width: 100%;
+}
+
+.upper-filter-and-sort {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
