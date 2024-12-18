@@ -1,68 +1,76 @@
-<div
-  class="w-full"
-  [ngClass]="{ 'sidenav-open': sidenavOpen, 'sidenav-closed': !sidenavOpen }"
->
-  <div class="table-container overflow-x-auto w-full flex-grow">
-    <div class="upper-filter-and-sort">
-      <input class="input-el" placeholder="Search transaction" />
-      <div class="flex">
-        <div class="ml-4">
-          <mat-label>Sort By</mat-label>
-          <mat-form-field placeholder="Sort By" class="ml-4" appearance="fill">
-            <mat-select [(ngModel)]="selectedTransaction">
-              @for (timeLine of timeLines; track timeLines) {
-              <mat-option value="{{ timeLine.value }}">
-                {{ timeLine.value }}
-              </mat-option>
-              }
-            </mat-select>
-          </mat-form-field>
-        </div>
-        <div class="ml-4">
-          <mat-label>Category</mat-label>
-          <mat-form-field placeholder="Category" class="ml-4" appearance="fill">
-            <mat-select [(ngModel)]="selectedTimeline">
-              @for (category of categories; track categories) {
-              <mat-option value="{{ category.value }}">
-                {{ category.value }}
-              </mat-option>
-              }
-            </mat-select>
-          </mat-form-field>
-        </div>
-      </div>
-    </div>
-    <div class="relative w-full">
-      <table class="min-w-full table-auto">
-        <thead>
-          <tr>
-            <th class="px-4 py-2 text-left">Recepient/Sender</th>
-            <th class="px-4 py-2 text-center">Category</th>
-            <th class="px-4 py-2 text-center">Transaction Date</th>
-            <th class="px-4 py-2 text-center">Amount</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr
-            class="pb-3 border-b border-custom-gray"
-            *ngFor="let item of transactions"
-          >
-            <td class="custom-td flex items-left justify-start gap-5">
-              <img
-                class="img"
-                [src]="'assets/avatars/' + item.avatar"
-                alt="Avatar"
-              />
-              <span class="text-center">{{ item.name }}</span>
-            </td>
-            <td class="px-4 py-2 text-center">{{ item.category }}</td>
-            <td class="px-4 py-2 text-center">
-              {{ item.date | date : "shortDate" }}
-            </td>
-            <td class="px-4 py-2 text-center">{{ item.amount | currency }}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+<table mat-table class="min-w-full table-auto">
+  <thead>
+    <tr class="border-b-[1px] border-[#f2f2f2]">
+      <th class="px-4 py-2 text-left">Recepient/Sender</th>
+      <th class="px-4 py-2 text-center">Category</th>
+      <th class="px-4 py-2 text-center">Transaction Date</th>
+      <th class="px-4 py-2 text-center">Amount</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      class="border-b-[1px] border-[#f2f2f2]"
+      *ngFor="let item of paginatedData"
+    >
+      <td class="custom-td flex items-left justify-start gap-5">
+        <img class="img" [src]="'assets/avatars/' + item.avatar" alt="Avatar" />
+        <span class="text-center font-bold">{{ item.name }}</span>
+      </td>
+      <td class="px-4 py-2 text-center">{{ item.category }}</td>
+      <td class="px-4 py-2 text-center">
+        {{ item.date | date : "shortDate" }}
+      </td>
+      <td
+        class="px-4 py-2 text-center font-bold"
+        [ngClass]="{
+          'text-green-500': item.amount > 0,
+          'text-black': item.amount < 0
+        }"
+      >
+        {{
+          item.amount > 0
+            ? "+" + (item.amount | currency)
+            : (item.amount | currency)
+        }}
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="pagination-container">
+  <button
+    class="btn-steps"
+    mat-icon-button
+    (click)="onPrevPage()"
+    [disabled]="currentPage === 0"
+  >
+    <mat-icon>chevron_left</mat-icon>
+    <span>Prev</span>
+  </button>
+  <div class="pagination-numbers">
+    <button
+      *ngFor="let page of pages"
+      [class.active]="page === currentPage + 1"
+    >
+      {{ page }}
+    </button>
   </div>
+  <button
+    class="btn-steps"
+    mat-icon-button
+    (click)="onNextPage()"
+    [disabled]="currentPage === totalPages - 1"
+  >
+    <span>Next</span>
+    <mat-icon>chevron_right</mat-icon>
+  </button>
 </div>
+
+<mat-paginator
+  [pageSize]="pageSize"
+  [pageSizeOptions]="[10]"
+  [hidePageSize]="true"
+  [showFirstLastButtons]="false"
+  (page)="onPageChange($event)"
+>
+</mat-paginator>

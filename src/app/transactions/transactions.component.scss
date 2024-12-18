@@ -44,3 +44,40 @@
   width: 100%;
   justify-content: space-between;
 }
+
+.btn-steps {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  border: 1px solid #98908b;
+  border-radius: 10px;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.pagination-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
+
+  .pagination-numbers {
+    display: flex;
+    gap: 10px;
+
+    button {
+      display: flex;
+      align-items: center;
+      padding: 10px 15px;
+      border: 1px solid #98908b;
+      border-radius: 10px;
+
+      &.active {
+        background-color: #201f24;
+        color: #fff;
+      }
+    }
+  }
+}
